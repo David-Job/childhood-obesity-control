@@ -1,5 +1,5 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
-const config = require('../config/config').development;
+import { Sequelize } from 'sequelize';
+import { development as config } from '../config/config';
 
 const sequelize = new Sequelize(
   config.database,
@@ -8,6 +8,6 @@ const sequelize = new Sequelize(
   { host: config.host, dialect: config.host },
 );
 
-sequelize.define();
+const db = { sequelize: sequelize, Sequelize: Sequelize };
 
-Sequelize.prototype.define;
+export default db;
