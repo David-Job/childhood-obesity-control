@@ -1,27 +1,27 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+// Web framework
+import express from 'express';
+
+// Cross-Origin Resource Sharing is needed
+import cors from 'cors';
+
+// Body parsing functions
+import { json, urlencoded } from 'body-parser';
+
+// Database connection
+import { sequelize } from './models';
 
 const app = express();
 const port = process.env.PORT || 4000;
 
-// enable CORS
-app.use(cors());
+app.use(cors()); // Enable CORS
 
-// parse application/json
-app.use(bodyParser.json());
+app.use(json()); // application/json
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(urlencoded({ extended: true })); // application/x-www-form-urlencoded
 
-// database connection (automatically looks up for the entry point)
-const db = require('./models');
+//sequelize.sync(); // For production. Database is not dropped
 
-// For exploitation. Database is not dropped
-db.sequelize.sync();
-
-// For exploitation. Database is not dropped
-db.sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: true }).then(() => {
   console.log('Drop and re-sync db.');
 });
 
@@ -29,6 +29,7 @@ db.sequelize.sync({ force: true }).then(() => {
 // exist.
 // In all future routes, this helps to know if the request is
 // authenticated or not.
+
 //app.use(function (req, res, next) {
 //// check header or url parameters or post parameters for token
 //var token = req.headers.authorization;
@@ -74,7 +75,7 @@ const routes = [
   './routes/institution.routes',
 ];
 
-routes.forEach((route) => require(route)(app));
+routes.forEach((route) => import(route)(app));
 
 app.listen(port, () => {
   console.log('Server started on: ' + port);
