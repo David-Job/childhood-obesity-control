@@ -1,5 +1,5 @@
-import { Sequelize } from 'sequelize';
 import { development as config } from '../config/config';
+import { Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize(
   config.database,
@@ -8,6 +8,4 @@ const sequelize = new Sequelize(
   { host: config.host, dialect: config.host },
 );
 
-const db = { sequelize: sequelize, Sequelize: Sequelize };
-
-export default db;
+export default sequelize;

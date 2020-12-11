@@ -5,10 +5,13 @@ import express from 'express';
 import cors from 'cors';
 
 // Body parsing functions
-import { json, urlencoded } from 'body-parser';
+import bodyParser from 'body-parser';
+const { json, urlencoded } = bodyParser;
 
 // Database connection
-import { sequelize } from './models';
+import sequelize from './models/index';
+
+console.log('index.js: ' + sequelize);
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -71,8 +74,8 @@ sequelize.sync({ force: true }).then(() => {
 // Set routes
 const routes = [
   './routes/student.routes',
-  './routes/teacher.routes',
-  './routes/institution.routes',
+  //'./routes/teacher.routes',
+  //'./routes/institution.routes',
 ];
 
 routes.forEach((route) => import(route)(app));
