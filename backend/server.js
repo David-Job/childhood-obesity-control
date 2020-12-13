@@ -1,15 +1,14 @@
 // Web framework
-import express from 'express';
+const express = require('express');
 
 // Cross-Origin Resource Sharing is needed
-import cors from 'cors';
+const cors = require('cors');
 
 // Body parsing functions
-import bodyParser from 'body-parser';
-const { json, urlencoded } = bodyParser;
+const { json, urlencoded } = require('body-parser');
 
 // Database connection
-import sequelize from './models/index';
+const sequelize = require('./models/db');
 
 console.log('index.js: ' + sequelize);
 
@@ -23,7 +22,6 @@ app.use(json()); // application/json
 app.use(urlencoded({ extended: true })); // application/x-www-form-urlencoded
 
 //sequelize.sync(); // For production. Database is not dropped
-
 sequelize.sync({ force: true }).then(() => {
   console.log('Drop and re-sync db.');
 });
