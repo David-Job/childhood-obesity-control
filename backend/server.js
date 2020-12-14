@@ -10,6 +10,8 @@ const { json, urlencoded } = require('body-parser');
 // Database connection
 const sequelize = require('./models/db');
 
+const fs = require('fs');
+
 console.log('index.js: ' + sequelize);
 
 const app = express();
@@ -69,14 +71,29 @@ sequelize.sync({ force: true }).then(() => {
 //});
 //});
 
-// Set routes
-const routes = [
-  './routes/student.routes',
-  //'./routes/teacher.routes',
-  //'./routes/institution.routes',
-];
+//require('fs')
+//.readdirSync('./routes')
+//.filter((file) => {
+//return (
+//file.indexOf('.') !== 0 && // Ignore hidden files
+////file !== basename &&
+//file.slice(-3) === '.js' // Match js extension
+//);
+//})
+//.forEach((file) => {
+//const model = sequelize['import'](path.join(__dirname, file));
+//db[model.name] = model;
+//});
 
-routes.forEach((route) => import(route)(app));
+// Fetch and apply routing files
+fs.readdirSync('./routes')
+  .filter((file) => {
+    return (
+      file.indexOf('.') !== 0 && // Ignore hidden files
+      file.slice(-3) === '.js' // Match js extension
+    );
+  })
+  .forEach((route) => require(route)(app));
 
 app.listen(port, () => {
   console.log('Server started on: ' + port);
