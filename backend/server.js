@@ -10,7 +10,7 @@ const { json, urlencoded } = require('body-parser');
 // Database connection
 const sequelize = require('./models/db');
 
-const fs = require('fs');
+const { readdirSync } = require('fs');
 
 console.log('index.js: ' + sequelize);
 
@@ -86,7 +86,7 @@ sequelize.sync({ force: true }).then(() => {
 //});
 
 // Fetch and apply routing files
-fs.readdirSync('./routes')
+readdirSync('./routes')
   .filter((file) => {
     return (
       file.indexOf('.') !== 0 && // Ignore hidden files
