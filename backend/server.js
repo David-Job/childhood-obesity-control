@@ -1,18 +1,18 @@
 // Web framework
-const express = require('express');
+const express = require("express");
 
 // Cross-Origin Resource Sharing is needed
-const cors = require('cors');
+const cors = require("cors");
 
 // Body parsing functions
-const { json, urlencoded } = require('body-parser');
+const { json, urlencoded } = require("body-parser");
 
 // Database connection
-const sequelize = require('./models/db');
+const { sequelize } = require("./models/db");
 
-const { readdirSync } = require('fs');
+const { readdirSync } = require("fs");
 
-console.log('index.js: ' + sequelize);
+console.log("index.js: " + sequelize);
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -25,7 +25,7 @@ app.use(urlencoded({ extended: true })); // application/x-www-form-urlencoded
 
 //sequelize.sync(); // For production. Database is not dropped
 sequelize.sync({ force: true }).then(() => {
-  console.log('Drop and re-sync db.');
+  console.log("Drop and re-sync db.");
 });
 
 // Middleware that checks if JWT token exists and verifies it if it does
@@ -86,15 +86,15 @@ sequelize.sync({ force: true }).then(() => {
 //});
 
 // Fetch and apply routing files
-readdirSync('./routes')
+readdirSync("./routes")
   .filter((file) => {
     return (
-      file.indexOf('.') !== 0 && // Ignore hidden files
-      file.slice(-3) === '.js' // Match js extension
+      file.indexOf(".") !== 0 && // Ignore hidden files
+      file.slice(-3) === ".js" // Match js extension
     );
   })
   .forEach((route) => require(route)(app));
 
 app.listen(port, () => {
-  console.log('Server started on: ' + port);
+  console.log("Server started on: " + port);
 });
