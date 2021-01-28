@@ -7,7 +7,12 @@ module.exports = (sequelize, Sequelize) => {
     birthDate: { type: Sequelize.DATE },
   });
 
-  Anthropometrics.belongsTo(Student, { foreignKey: { allowNull: true } });
+  Anthropometrics.associate = (models) => {
+    // associations can be defined here
+    Anthropometrics.belongsTo(models.student, {
+      foreignKey: { allowNull: true },
+    });
+  };
 
   return Anthropometrics;
 };

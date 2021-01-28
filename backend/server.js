@@ -8,7 +8,7 @@ const cors = require("cors");
 const { json, urlencoded } = require("body-parser");
 
 // Database connection
-const { sequelize } = require("./models/db");
+const { sequelize } = require("./models/index");
 
 const { readdirSync } = require("fs");
 
@@ -24,7 +24,7 @@ app.use(json()); // application/json
 app.use(urlencoded({ extended: true })); // application/x-www-form-urlencoded
 
 //sequelize.sync(); // For production. Database is not dropped
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   console.log("Drop and re-sync db.");
 });
 
@@ -93,7 +93,10 @@ readdirSync("./routes")
       file.slice(-3) === ".js" // Match js extension
     );
   })
-  .forEach((route) => require(route)(app));
+  .forEach((route) => {
+    console.log(`Loading ./routes/${route}`);
+    require(`./routes/${route}`)(app);
+  });
 
 app.listen(port, () => {
   console.log("Server started on: " + port);

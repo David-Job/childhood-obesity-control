@@ -1,6 +1,9 @@
-const db = require("../models");
+const db = require("../models/index");
 const User = db.user;
-const { Op } = db.Sequelize;
+//const { Op } = db.Sequelize;
+
+//const User = require("../models/user.model");
+console.log(User);
 
 // Create an User
 exports.create = (req, res) => {
@@ -27,6 +30,7 @@ exports.create = (req, res) => {
     });
 };
 
+
 // Read all Users
 exports.findAll = (req, res) => {
   User.findAll()
@@ -39,6 +43,7 @@ exports.findAll = (req, res) => {
       });
     });
 };
+
 
 // Read one User
 exports.findOne = (req, res) => {
@@ -55,7 +60,8 @@ exports.findOne = (req, res) => {
     });
 };
 
-// Update a User
+
+// Update an User
 exports.update = (req, res) => {
   const id = req.params.id;
 
@@ -81,6 +87,8 @@ exports.update = (req, res) => {
     });
 };
 
+
+// Delete an User
 exports.delete = (req, res) => {
   const id = req.params.id;
   
