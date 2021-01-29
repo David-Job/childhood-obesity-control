@@ -93,6 +93,16 @@ exports.delete = (req, res) => {
   const id = req.params.id;
   
   User.destroy({where:{id:id}})
-    .then()
-    .catch()
+    .then((num) => {
+      if (num == 1) {
+        res.send({ messagge: "User was deleted successfully." });
+      } else {
+        res.send({
+          message: `Cannot delete User with id=${id}`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({ message: "Error deleting User with id=" + id });
+    });
 };

@@ -24,7 +24,7 @@ app.use(json()); // application/json
 app.use(urlencoded({ extended: true })); // application/x-www-form-urlencoded
 
 //sequelize.sync(); // For production. Database is not dropped
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
 });
 
