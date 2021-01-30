@@ -29,13 +29,14 @@ readdirSync(__dirname)
     );
   })
   .forEach((file) => {
-    //const model = require(path.join(__dirname, file));
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    console.log("model.name = " + model.name);
+    // Import the model creation function and call it
+    const model = require(path.join(__dirname, file))(
+      sequelize,
+      Sequelize.DataTypes
+    );
     db[model.name] = model;
   });
 
-// Call the associate method from the models that have it
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
@@ -44,8 +45,5 @@ Object.keys(db).forEach((modelName) => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
-console.log("models/index.js -- db");
-console.log(db);
 
 module.exports = db;

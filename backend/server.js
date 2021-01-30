@@ -12,8 +12,6 @@ const { sequelize } = require("./models/index");
 
 const { readdirSync } = require("fs");
 
-console.log("index.js: " + sequelize);
-
 const app = express();
 const port = process.env.PORT || 4000;
 

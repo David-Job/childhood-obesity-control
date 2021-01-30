@@ -1,16 +1,12 @@
-const User = require("./user.model");
-const Institution = require("./institution.model");
-const Anthropometrics = require("./anthropometrics.model");
-
 module.exports = (sequelize, Sequelize) => {
-  const Student = sequelize.define("student", {}, { timestamps: false });
+  const Student = sequelize.define("student");
 
   Student.associate = (models) => {
-    Student.hasOne(models.user, { foreignKey: { allowNull: true } });
-    Student.belongsTo(models.institution, { foreignKey: { allowNull: true } });
-    Student.hasMany(models.anthropometrics, {
-      foreignKey: { allowNull: true },
-    });
+    // belongsTo... -> this model holds the foreign key
+    // has... -> the referenced model holds the foreign key
+    Student.belongsTo(models.user);
+    Student.belongsTo(models.institution);
+    Student.hasMany(models.anthropometrics);
   };
 
   return Student;

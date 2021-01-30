@@ -1,5 +1,3 @@
-const Student = require("./student.model");
-
 module.exports = (sequelize, Sequelize) => {
   const Anthropometrics = sequelize.define("anthropometrics", {
     height: { type: Sequelize.FLOAT },
@@ -8,10 +6,7 @@ module.exports = (sequelize, Sequelize) => {
   });
 
   Anthropometrics.associate = (models) => {
-    // associations can be defined here
-    Anthropometrics.belongsTo(models.student, {
-      foreignKey: { allowNull: true },
-    });
+    Anthropometrics.belongsTo(models.student);
   };
 
   return Anthropometrics;

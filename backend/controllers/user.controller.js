@@ -1,9 +1,4 @@
-const db = require("../models/index");
-const User = db.user;
-//const { Op } = db.Sequelize;
-
-//const User = require("../models/user.model");
-console.log(User);
+const { user } = require("../models");
 
 // Create an User
 exports.create = (req, res) => {
@@ -14,14 +9,8 @@ exports.create = (req, res) => {
     return;
   }
 
-  let user = {
-    firstName: req.body.firstName,
-    surname1: req.body.surname1,
-    surname2: req.body.surname2,
-    email: req.body.email,
-  };
-
-  User.create(user)
+  user
+    .create(req.body)
     .then((data) => res.status(200).send(data))
     .catch((err) => {
       res.status(500).send({
@@ -30,10 +19,10 @@ exports.create = (req, res) => {
     });
 };
 
-
 // Read all Users
-exports.findAll = (req, res) => {
-  User.findAll()
+exports.findAll = (_, res) => {
+  user
+    .findAll()
     .then((data) => {
       res.send(data);
     })
@@ -44,22 +33,21 @@ exports.findAll = (req, res) => {
     });
 };
 
-
 // Read one User
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  User.findByPk(id)
+  user
+    .findByPk(id)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving User with id=" + id,
+        message: err.message || "Error retrieving User with id=" + id,
       });
     });
 };
-
 
 // Update an User
 exports.update = (req, res) => {
@@ -72,10 +60,11 @@ exports.update = (req, res) => {
     return;
   }
 
-  User.update(req.body, { where: { id: id } })
+  user
+    .update(req.body, { where: { id: id } })
     .then((num) => {
       if (num == 1) {
-        res.send({ messagge: "User was updated successfully." });
+        res.send({ message: "User was updated successfully." });
       } else {
         res.send({
           message: `Cannot update User with id=${id}. Maybe User was not fout or req.body is empty!`,
@@ -83,16 +72,18 @@ exports.update = (req, res) => {
       }
     })
     .catch((err) => {
-      res.status(500).send({ message: "Error updating User with id=" + id });
+      res
+        .status(500)
+        .send({ message: err.message || "Error updating User with id=" + id });
     });
 };
 
-
 // Delete an User
 exports.delete = (req, res) => {
-  const id = req.params.id;
-  
-  User.destroy({where:{id:id}})
+  const targetId = req.params.id;
+
+  user
+    .destroy({ where: { id: targetId } })
     .then((num) => {
       if (num == 1) {
         res.send({ messagge: "User was deleted successfully." });
@@ -103,6 +94,8 @@ exports.delete = (req, res) => {
       }
     })
     .catch((err) => {
-      res.status(500).send({ message: "Error deleting User with id=" + id });
+      res
+        .status(500)
+        .send({ message: err.message || "Error deleting User with id=" + id });
     });
 };
