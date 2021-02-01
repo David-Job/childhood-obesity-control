@@ -1,0 +1,409 @@
+{
+	"info": {
+		"_postman_id": "44beac78-4d37-4b2d-82d4-e1f4310233ad",
+		"name": "childhood-obesity-control",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "David",
+									"type": "text"
+								},
+								{
+									"key": "surname1",
+									"value": "Jiménez",
+									"type": "text"
+								},
+								{
+									"key": "surname2",
+									"value": "Suárez",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "david.job.js@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}users",
+							"protocol": "{{$PROTOCOL}}",
+							"host": [
+								"{{$HOST}}"
+							],
+							"port": "{{$PORT}}",
+							"path": [
+								"{{$API_DIR}}users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}users",
+							"protocol": "{{$PROTOCOL}}",
+							"host": [
+								"{{$HOST}}"
+							],
+							"port": "{{$PORT}}",
+							"path": [
+								"{{$API_DIR}}users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read user with id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}users/:id",
+							"protocol": "{{$PROTOCOL}}",
+							"host": [
+								"{{$HOST}}"
+							],
+							"port": "{{$PORT}}",
+							"path": [
+								"{{$API_DIR}}users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user with id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "David",
+									"type": "text"
+								},
+								{
+									"key": "surname1",
+									"value": "Jiménez",
+									"type": "text"
+								},
+								{
+									"key": "surname2",
+									"value": "Suárez",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "davidjobjimenezsuarez@alumno.ieselrincon.es",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}users/:id",
+							"protocol": "{{$PROTOCOL}}",
+							"host": [
+								"{{$HOST}}"
+							],
+							"port": "{{$PORT}}",
+							"path": [
+								"{{$API_DIR}}users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user with id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}users/:id",
+							"protocol": "{{$PROTOCOL}}",
+							"host": [
+								"{{$HOST}}"
+							],
+							"port": "{{$PORT}}",
+							"path": [
+								"{{$API_DIR}}users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "Create student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "David",
+									"type": "text"
+								},
+								{
+									"key": "surname1",
+									"value": "Jiménez",
+									"type": "text"
+								},
+								{
+									"key": "surname2",
+									"value": "Suárez",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "david.job.js@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}students/",
+							"protocol": "{{$PROTOCOL}}",
+							"host": [
+								"{{$HOST}}"
+							],
+							"port": "{{$PORT}}",
+							"path": [
+								"{{$API_DIR}}students",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read all students",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}students/",
+							"protocol": "{{$PROTOCOL}}",
+							"host": [
+								"{{$HOST}}"
+							],
+							"port": "{{$PORT}}",
+							"path": [
+								"{{$API_DIR}}students",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read student with id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}students/:id",
+							"protocol": "{{$PROTOCOL}}",
+							"host": [
+								"{{$HOST}}"
+							],
+							"port": "{{$PORT}}",
+							"path": [
+								"{{$API_DIR}}students",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update student with id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "David",
+									"type": "text"
+								},
+								{
+									"key": "surname1",
+									"value": "Jiménez",
+									"type": "text"
+								},
+								{
+									"key": "surname2",
+									"value": "Suárez",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "david.job.js@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}students/:id",
+							"protocol": "{{$PROTOCOL}}",
+							"host": [
+								"{{$HOST}}"
+							],
+							"port": "{{$PORT}}",
+							"path": [
+								"{{$API_DIR}}students",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete student with id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}students/:id",
+							"protocol": "{{$PROTOCOL}}",
+							"host": [
+								"{{$HOST}}"
+							],
+							"port": "{{$PORT}}",
+							"path": [
+								"{{$API_DIR}}students",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "$PROTOCOL",
+			"value": "http"
+		},
+		{
+			"key": "$HOST",
+			"value": "localhost"
+		},
+		{
+			"key": "$PORT",
+			"value": "4000"
+		},
+		{
+			"key": "$API_DIR",
+			"value": ""
+		}
+	]
+}
