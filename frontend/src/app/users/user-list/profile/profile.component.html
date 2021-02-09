@@ -1,0 +1,34 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      user-details
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="userForm" (ngSubmit)="submitForm()" novalidate>
+    <ion-item lines="full">
+      <ion-label>First Name</ion-label>
+      <ion-input formControlName="firstName" type="text" required>
+      </ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label>First Surname</ion-label>
+      <ion-input formControlName="surname1" type="text" required>
+      </ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label>Second Surname</ion-label>
+      <ion-input formControlName="surname2" type="text" required>
+      </ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label>E-mail address</ion-label>
+      <ion-input formControlName="email" type="text" required>
+      </ion-input>
+    </ion-item>
+  </form>
+  
+</ion-content>

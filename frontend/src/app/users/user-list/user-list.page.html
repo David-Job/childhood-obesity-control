@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>user-list</ion-title>
+
+    <ion-button (click)="addUser()">
+      <ion-icon name="add-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let user of users" href="user-list/{{ user.id }}">
+    <ion-card-header>
+      <ion-card-subtitle>
+        {{ user.id }}
+      </ion-card-subtitle>
+      <ion-card-title>
+        {{ user.surname1 }} {{ user.surname2 }}, {{ user.firstName }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content> Email: {{ user.email }} </ion-card-content>
+  </ion-card>
+</ion-content>
