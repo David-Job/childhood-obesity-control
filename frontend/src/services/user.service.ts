@@ -6,17 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-
   private baseUrl = 'http://localhost:4000/api/users';
 
   private options = {
-    headers: { 'Content-Type': 'appilcation/x-www-form-urlencoded' },
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
   };
 
   private constructor(private http: HttpClient) {}
 
   public create(body: object): Observable<any> {
-    return this.http.post(this.baseUrl, body);
+    return this.http.post(this.baseUrl, body, this.options);
   }
 
   public readAll(): Observable<any> {
@@ -24,14 +23,14 @@ export class UserService {
   }
 
   public read(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/:${id}`);
+    return this.http.get(`${this.baseUrl}/${id}`, this.options);
   }
 
   public update(id: number, body: object): Observable<any> {
-    return this.http.put(`${this.baseUrl}/:${id}`, body);
+    return this.http.put(`${this.baseUrl}/${id}`, body, this.options);
   }
 
   public delete(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/:${id}`);
+    return this.http.delete(`${this.baseUrl}/${id}`, this.options);
   }
 }
