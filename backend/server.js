@@ -1,34 +1,36 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+// Web framework
+const express = require("express");
+
+// Cross-Origin Resource Sharing is needed
+const cors = require("cors");
+
+// Body parsing functions
+const { json, urlencoded } = require("body-parser");
+
+// Database connection
+const { sequelize } = require("./models/index");
+
+const { readdirSync } = require("fs");
 
 const app = express();
 const port = process.env.PORT || 4000;
 
-// enable CORS
-app.use(cors());
+app.use(cors()); // Enable CORS
 
-// parse application/json
-app.use(bodyParser.json());
+app.use(json()); // application/json
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(urlencoded({ extended: true })); // application/x-www-form-urlencoded
 
-// database connection (automatically looks up for the entry point)
-const db = require('./models');
-
-// For exploitation. Database is not dropped
-db.sequelize.sync();
-
-// For exploitation. Database is not dropped
-db.sequelize.sync({ force: true }).then(() => {
-  console.log('Drop and re-sync db.');
+//sequelize.sync(); // For production. Database is not dropped
+sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
 });
 
 // Middleware that checks if JWT token exists and verifies it if it does
 // exist.
 // In all future routes, this helps to know if the request is
 // authenticated or not.
+
 //app.use(function (req, res, next) {
 //// check header or url parameters or post parameters for token
 //var token = req.headers.authorization;
@@ -67,15 +69,33 @@ db.sequelize.sync({ force: true }).then(() => {
 //});
 //});
 
-// Set routes
-const routes = [
-  './routes/student.routes',
-  './routes/teacher.routes',
-  './routes/institution.routes',
-];
+//require('fs')
+//.readdirSync('./routes')
+//.filter((file) => {
+//return (
+//file.indexOf('.') !== 0 && // Ignore hidden files
+////file !== basename &&
+//file.slice(-3) === '.js' // Match js extension
+//);
+//})
+//.forEach((file) => {
+//const model = sequelize['import'](path.join(__dirname, file));
+//db[model.name] = model;
+//});
 
-routes.forEach((route) => require(route)(app));
+// Fetch and apply routing files
+readdirSync("./routes")
+  .filter((file) => {
+    return (
+      file.indexOf(".") !== 0 && // Ignore hidden files
+      file.slice(-3) === ".js" // Match js extension
+    );
+  })
+  .forEach((route) => {
+    console.log(`Loading ./routes/${route}`);
+    require(`./routes/${route}`)(app);
+  });
 
 app.listen(port, () => {
-  console.log('Server started on: ' + port);
+  console.log("Server started on: " + port);
 });
