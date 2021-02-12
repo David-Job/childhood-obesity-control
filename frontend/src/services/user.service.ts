@@ -9,7 +9,7 @@ export class UserService {
   private baseUrl = 'http://localhost:4000/api/users';
 
   private options = {
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    headers: { 'Content-Type': 'application/json' },
   };
 
   private constructor(private http: HttpClient) {}

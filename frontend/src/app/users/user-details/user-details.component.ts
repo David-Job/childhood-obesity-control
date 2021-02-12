@@ -59,41 +59,25 @@ export class UserDetailsComponent implements OnInit {
 
   updateUser() {
     let { firstName, surname1, surname2, email } = this.userDetailsForm.value;
+    console.log(firstName);
+    console.log(surname1);
+    console.log(surname2);
+    console.log(email);
 
-    this.userService.read(this.id).subscribe({
-      next: (user) => {
-        user.firstName = firstName;
-        user.surname1 = surname1;
-        user.surname2 = surname2;
-        user.email = email;
-
-        this.userService.update(this.id, user).subscribe({
-          next: (data) => {
-            console.log(data);
-            this.router.navigate(['users']);
-          },
-          error: (err) => console.error(err),
-        });
-
-        this.router.navigate(['users']);
-      },
-      error: (err) => console.error(err),
-    });
-
-    //this.userService
-    //.update(this.id, {
-    //firstName: firstName,
-    //surname1: surname1,
-    //surname2: surname2,
-    //email: email,
-    //})
-    //.subscribe({
-    //next: (data) => {
-    //console.log(data);
-    //this.router.navigate(['users']);
-    //},
-    //error: (err) => console.error(err),
-    //});
+    this.userService
+      .update(this.id, {
+        firstName: firstName,
+        surname1: surname1,
+        surname2: surname2,
+        email: email,
+      })
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.router.navigate(['users']);
+        },
+        error: (err) => console.error(err),
+      });
   }
 
   deleteUser() {
