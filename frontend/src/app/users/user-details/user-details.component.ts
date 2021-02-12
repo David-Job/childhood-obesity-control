@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/services/user.service';
 
 @Component({
@@ -10,14 +10,19 @@ import { UserService } from 'src/services/user.service';
 })
 export class UserDetailsComponent implements OnInit {
   protected id: any;
+  //protected readOnly: boolean;
+  protected canEdit: boolean;
   protected userDetailsForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private userService: UserService,
     private fb: FormBuilder
   ) {
     this.id = this.route.snapshot.paramMap.get('id');
+    //this.readOnly = true;
+    this.canEdit = false;
     this.userDetailsForm = this.fb.group({
       firstName: [''],
       surname1: [''],
@@ -41,5 +46,62 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
-  submitForm() {}
+  toggleCanEdit() {
+    console.log('button works!');
+    //this.readOnly = !this.readOnly;
+    this.canEdit = !this.canEdit;
+  }
+
+  submitForm() {
+    console.log('submitForm');
+    console.log(this.userDetailsForm.value);
+  }
+
+  updateUser() {
+    let { firstName, surname1, surname2, email } = this.userDetailsForm.value;
+
+    this.userService.read(this.id).subscribe({
+      next: (user) => {
+        user.firstName = firstName;
+        user.surname1 = surname1;
+        user.surname2 = surname2;
+        user.email = email;
+
+        this.userService.update(this.id, user).subscribe({
+          next: (data) => {
+            console.log(data);
+            this.router.navigate(['users']);
+          },
+          error: (err) => console.error(err),
+        });
+
+        this.router.navigate(['users']);
+      },
+      error: (err) => console.error(err),
+    });
+
+    //this.userService
+    //.update(this.id, {
+    //firstName: firstName,
+    //surname1: surname1,
+    //surname2: surname2,
+    //email: email,
+    //})
+    //.subscribe({
+    //next: (data) => {
+    //console.log(data);
+    //this.router.navigate(['users']);
+    //},
+    //error: (err) => console.error(err),
+    //});
+  }
+
+  deleteUser() {
+    this.userService.delete(this.id).subscribe({
+      next: (_) => {
+        this.router.navigate(['users']);
+      },
+      error: (err) => console.error(err),
+    });
+  }
 }

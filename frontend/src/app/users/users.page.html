@@ -1,11 +1,21 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>users</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon
+          slot="icon-only"
+          name="add-circle-outline"
+          (click)="addUser()"
+        >
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let user of users" href="users/{{ user.id }}">
+  <ion-card *ngFor="let user of users" button (click)="getUserDetails(user.id)">
     <ion-card-title>
       {{ user.surname1 }} {{ user.surname2 }}, {{ user.firstName }}
     </ion-card-title>
