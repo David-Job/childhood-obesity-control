@@ -9,10 +9,9 @@ import { UserService } from 'src/services/user.service';
   styleUrls: ['./user-details.component.scss'],
 })
 export class UserDetailsComponent implements OnInit {
-  protected id: any;
-  //protected readOnly: boolean;
-  protected canEdit: boolean;
-  protected userDetailsForm: FormGroup;
+  id: any;
+  canEdit = false;
+  userDetailsForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,18 +20,19 @@ export class UserDetailsComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.id = this.route.snapshot.paramMap.get('id');
-    //this.readOnly = true;
-    this.canEdit = false;
     this.userDetailsForm = this.fb.group({
       firstName: [''],
       surname1: [''],
       surname2: [''],
       email: [''],
-    });
+    }, { updateOn: 'blur' });
   }
 
   ngOnInit() {
     this.populateForm();
+    this.userDetailsForm.valueChanges.subscribe((data) => {
+      console.log('Form changes', data);
+    });
   }
 
   populateForm() {
