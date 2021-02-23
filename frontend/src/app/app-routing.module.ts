@@ -9,11 +9,24 @@ const routes: Routes = [
   },
   {
     path: 'users',
-    loadChildren: () => import('./users/users.module').then( m => m.UsersPageModule)
+    loadChildren: () =>
+      import('./users/user-list/user-list.module').then(
+        (m) => m.UserListPageModule
+      ),
   },
   {
-    path: 'users',
-    loadChildren: () => import('./users/users.module').then( m => m.UsersPageModule)
+    path: 'users/add',
+    loadChildren: () =>
+      import('./users/add-user/add-user.module').then(
+        (m) => m.AddUserPageModule
+      ),
+  },
+  {
+    path: 'users/:id',
+    loadChildren: () =>
+      import('./users/user-details/user-details.module').then(
+        (m) => m.UserDetailsPageModule
+      ),
   },
 ];
 
