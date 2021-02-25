@@ -1,5 +1,5 @@
 // Generate token using secret from process.env.JWT_SECRET
-import { sign } from 'jsonwebtoken';
+import { sign } from "jsonwebtoken";
 
 // Generate token and return it
 function generateToken(user) {
@@ -10,9 +10,10 @@ function generateToken(user) {
 
   var u = {
     id: user.id,
-    name: user.name,
-    username: user.username,
-    isAdmin: user.isAdmin,
+    firstName: user.firstName,
+    surname1: user.surname1,
+    surname2: user.surname2,
+    email: user.email,
     password: user.password,
   };
 
@@ -28,9 +29,10 @@ function getCleanUser(user) {
 
   return {
     id: user.id,
-    name: user.name,
-    username: user.username,
-    isAdmin: user.isAdmin,
+    firstName: user.firstName,
+    surname1: user.surname1,
+    surname2: user.surname2,
+    email: user.email,
     password: user.password,
   };
 }
