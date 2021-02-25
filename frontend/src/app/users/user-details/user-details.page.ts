@@ -49,7 +49,6 @@ export class UserDetailsPage implements OnInit {
   }
 
   toggleCanEdit() {
-    //this.readOnly = !this.readOnly;
     this.canEdit = !this.canEdit;
   }
 
