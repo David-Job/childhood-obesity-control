@@ -13,7 +13,9 @@ A list of technologies used within the project:
  * [Sequelize ORM](https://sequelize.org/): Version 6
  * [Ionic](https://ionicframework.com/): Version 5
  * [Angular](https://angular.io/): Version 10
- 
+## Installation
+### Relational Model
+* User(__userId__, firstName, surname1, surname2, email, password)
 ## Installation
 ***
 ### Prerequisites
@@ -21,5 +23,3 @@ You will need to install this software in your system:
 * [MySQL](https://dev.mysql.com/downloads/) (optionally, you can use [Docker](https://hub.docker.com/_/mysql?tab=tags&page=1&ordering=last_updated))
 * [Node.js](https://dev.mysql.com/downloads/)
 
-### Relational Model
-User(__userId__, firstName, surname1, surname2, email, password)
