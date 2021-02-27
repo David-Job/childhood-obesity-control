@@ -15,15 +15,15 @@ A list of technologies used within the project:
  * [Angular](https://angular.io/): Version 10
 ## Installation
 ### Relational Model
-* User(__userId__, firstName, surname1, surname2, email, password)
-* Institution(__institutionId__, name, physicalAddress, province, latitude, longitude)
-* Teacher(__teacherId__, _userId_, _institutionId_)
-* Student(__stutentId__, _userId_, _institutionId_, _teacherId_)
-* Anthropometrics(__antropometricsId__, _studentId_, height, weight, birthDate)
+* User ( __userId__, firstName, surname1, surname2, email, password )
+* Institution ( __institutionId__, name, physicalAddress, province, latitude, longitude )
+* Teacher ( __teacherId__, _userId_, _institutionId_ )
+* Student ( __stutentId__, _userId_, _institutionId_, _teacherId_ )
+* Anthropometrics( __antropometricsId__, _studentId_, height, weight, birthDate )
 ## Installation
 ***
 ### Prerequisites
 You will need to install this software in your system:
-* [MySQL](https://dev.mysql.com/downloads/) (optionally, you can use [Docker](https://hub.docker.com/_/mysql?tab=tags&page=1&ordering=last_updated))
+* [MySQL](https://dev.mysql.com/downloads/)
+  * Optionally, you can install [Docker](https://docs.docker.com/get-started/) and download the [MySQL image](https://hub.docker.com/_/mysql?tab=tags&page=1&ordering=last_updated))
 * [Node.js](https://dev.mysql.com/downloads/)
-
