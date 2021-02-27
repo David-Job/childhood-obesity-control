@@ -16,6 +16,10 @@ A list of technologies used within the project:
 ## Installation
 ### Relational Model
 * User(__userId__, firstName, surname1, surname2, email, password)
+* Institution(__institutionId__, name, physicalAddress, province, latitude, longitude)
+* Teacher(__teacherId__, _userId_, _institutionId_)
+* Student(__stutentId__, _userId_, _institutionId_, _teacherId_)
+* Anthropometrics(__antropometricsId__, _studentId_, height, weight, birthDate)
 ## Installation
 ***
 ### Prerequisites
