@@ -8,12 +8,18 @@ A full-stack application that tracks anthropometric data taken from primary scho
 ## Technologies
 ***
 A list of technologies used within the project:
-* [Technologie name](https://example.com): Version 12.3 
-* [Technologie name](https://example.com): Version 2.34
-* [Library name](https://example.com): Version 1234
+ * [MySQL](https://www.mysql.com/): Version 10.1.40
+ * [Node.js](https://nodejs.org/es/): Version 14.15.1 LTS
+ * [Sequelize ORM](https://sequelize.org/): Version 6
+ * [Ionic](https://ionicframework.com/): Version 5
+ * [Angular](https://angular.io/): Version 10
+ 
 ## Installation
 ***
 ### Prerequisites
 You will need to install this software in your system:
 * [MySQL](https://dev.mysql.com/downloads/) (optionally, you can use [Docker](https://hub.docker.com/_/mysql?tab=tags&page=1&ordering=last_updated))
 * [Node.js](https://dev.mysql.com/downloads/)
+
+### Relational Model
+User(__userId__, firstName, surname1, surname2, email, password)
