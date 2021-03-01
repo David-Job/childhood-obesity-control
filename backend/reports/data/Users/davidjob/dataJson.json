@@ -1,0 +1,10 @@
+{
+    "id": 1,
+    "firstName": "John",
+    "surname1": "Jones",
+    "surname2": "Jones",
+    "email": "abc@example.com",
+    "password": "123456",
+    "createdAt": "2021-03-01T17:49:59.000Z",
+    "updatedAt": "2021-03-01T17:49:59.000Z"
+}

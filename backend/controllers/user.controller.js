@@ -24,6 +24,7 @@ exports.findAll = (_, res) => {
   user
     .findAll()
     .then((data) => {
+      console.log(data);
       res.send(data);
     })
     .catch((err) => {
@@ -32,6 +33,20 @@ exports.findAll = (_, res) => {
       });
     });
 };
+
+//exports.findAll = async () => {
+//  await user
+//    .findAll()
+//    .then((data) => {
+//      return data;
+//    })
+//    .catch((err) => {
+//      res.status(500).send({
+//        message: err.message || "Some error occurred while retrieving users",
+//      });
+//      return null;
+//    });
+//};
 
 // Read one User
 exports.findOne = (req, res) => {

@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group(
       {
-        username: [''],
+        email: [''],
         password: [''],
       },
       { updateOn: 'blur' }

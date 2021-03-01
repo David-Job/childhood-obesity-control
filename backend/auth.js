@@ -1,27 +1,30 @@
-const jwt = require('jsonwebtoken');
-const utils = require('../utils');
-const bcrypt = require('bcryptjs');
+const jwt = require("jsonwebtoken");
+const utils = require("./utils");
+const bcrypt = require("bcryptjs");
 
-const db = require("../models");
+const db = require("./models");
 const User = db.user;
 
 exports.signin = (req, res) => {
-  const user = req.body.username;
+  const email = req.body.email;
   const pwd = req.body.password;
 
-  // return 400 status if username/password is not exist
-  if (!user || !pwd) {
+  // return 400 status if email/password is not exist
+  if (!email || !pwd) {
     return res.status(400).json({
       error: true,
-      message: "Username or Password required."
+      message: "Email or Password required.",
     });
   }
 
   // return 401 status if the credential is not match.
-  User.findOne({ where: { username: user } })
-    .then(data => {
-      const result = bcrypt.compareSync(pwd, data.password);
-      if(!result) return  res.status(401).send('Password not valid!');
+  User.findOne({ where: { email: email } })
+    .then((data) => {
+      console.log(data.password);
+      const result = bcrypt.compareSync(pwd, data.dataValues.password);
+      //const result = pwd === data.dataValues.password;
+      console.log(result);
+      if (!result) return res.status(401).send("Password not valid!");
 
       // generate token
       const token = utils.generateToken(data);
@@ -30,10 +33,10 @@ exports.signin = (req, res) => {
       // return the token along with user details
       return res.json({ user: userObj, access_token: token });
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving tutorials.",
       });
     });
 };
@@ -42,35 +45,37 @@ exports.isAuthenticated = (req, res, next) => {
   // check header or url parameters or post parameters for token
   // var token = req.body.token || req.query.token;
   var token = req.token;
+  console.log("Token: " + token);
   if (!token) {
     return res.status(400).json({
       error: true,
-      message: "Token is required."
+      message: "Token is required.",
     });
   }
   // check token that was passed by decoding token using secret
   // .env should contain a line like JWT_SECRET=V3RY#1MP0RT@NT$3CR3T#
   jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
-    if (err) return res.status(401).json({
-      error: true,
-      message: "Invalid token."
-    });
+    if (err)
+      return res.status(401).json({
+        error: true,
+        message: "Invalid token.",
+      });
 
     User.findByPk(user.id)
-      .then(data => {
+      .then(() => {
         // return 401 status if the userId does not match.
         if (!user.id) {
           return res.status(401).json({
             error: true,
-            message: "Invalid user."
+            message: "Invalid user.",
           });
         }
         // get basic user details
         next();
       })
-      .catch(err => {
+      .catch((_err) => {
         res.status(500).send({
-          message: "Error retrieving User with id=" + id
+          message: "Error retrieving User with id=" + id,
         });
       });
   });

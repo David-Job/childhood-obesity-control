@@ -23,7 +23,7 @@ app.use(urlencoded({ extended: true })); // application/x-www-form-urlencoded
 
 //sequelize.sync(); // For production. Database is not dropped
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   console.log("Drop and re-sync db.");
 });
 
@@ -44,28 +44,28 @@ app.use(function (req, res, next) {
     const credentials = Buffer.from(base64Credentials, "base64").toString(
       "ascii"
     );
-    const [username, password] = credentials.split(":");
+    const [email, password] = credentials.split(":");
 
-    req.body.username = username;
+    req.body.email = email;
     req.body.password = password;
 
     return next();
   }
 
- // token = token.replace("Bearer ", "");
- // // .env should contain a line like JWT_SECRET=V3RY#1MP0RT@NT$3CR3T#
- // jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
- //   if (err) {
- //     return res.status(401).json({
- //       error: true,
- //       message: "Invalid user",
- //     });
- //   } else {
- //     req.user = user; // Set the user to req so other routes can use it
- //     req.token = token;
- //     next();
- //   }
- // });
+  // token = token.replace("Bearer ", "");
+  // // .env should contain a line like JWT_SECRET=V3RY#1MP0RT@NT$3CR3T#
+  // jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
+  //   if (err) {
+  //     return res.status(401).json({
+  //       error: true,
+  //       message: "Invalid user",
+  //     });
+  //   } else {
+  //     req.user = user; // Set the user to req so other routes can use it
+  //     req.token = token;
+  //     next();
+  //   }
+  // });
 });
 
 // Fetch and apply routing files

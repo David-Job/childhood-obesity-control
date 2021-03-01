@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 interface User {
-  username: string;
+  email: string;
   password: any;
 }
 
@@ -27,7 +27,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient, private storage: Storage) {}
 
   getOptions(user: User) {
-    let base64Credentials = window.btoa(user.username + ':' + user.password);
+    let base64Credentials = window.btoa(`${user.email}:${user.password}`);
     let basicAccess = 'Basic ' + base64Credentials;
     return {
       headers: {
