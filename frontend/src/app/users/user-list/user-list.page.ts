@@ -14,7 +14,7 @@ export class UserListPage implements OnInit {
   navEvents: any;
 
   constructor(private userService: UserService, private router: Router) {
-    this.navEvents = router.events.pipe(
+    this.navEvents=router.events.pipe(
       filter((event) => event instanceof RoutesRecognized)
     ) as Observable<RoutesRecognized>;
   }
@@ -22,7 +22,7 @@ export class UserListPage implements OnInit {
   ngOnInit() {
     this.getUsers();
     this.navEvents.subscribe((event: RoutesRecognized) => {
-      if (event.urlAfterRedirects === '/users') {
+      if (event.urlAfterRedirects==='/users') {
         this.getUsers();
       }
     });
@@ -31,7 +31,7 @@ export class UserListPage implements OnInit {
   getUsers() {
     this.userService.readAll().subscribe({
       next: (data) => {
-        this.users = data;
+        this.users=data;
       },
       error: (err) => console.error(err),
     });
