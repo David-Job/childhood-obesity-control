@@ -34,19 +34,19 @@ exports.findAll = (_, res) => {
     });
 };
 
-//exports.findAll = async () => {
-//  await user
-//    .findAll()
-//    .then((data) => {
-//      return data;
-//    })
-//    .catch((err) => {
-//      res.status(500).send({
-//        message: err.message || "Some error occurred while retrieving users",
-//      });
-//      return null;
-//    });
-//};
+exports.report = async () => {
+  await user
+    .findAll()
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving users",
+      });
+      return null;
+    });
+};
 
 // Read one User
 exports.findOne = (req, res) => {

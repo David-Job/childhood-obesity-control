@@ -45,4 +45,8 @@ export class UserListPage implements OnInit {
     this.router.navigateByUrl('/users/add');
   }
 
+  usersReport() {
+    window.open('http://localhost:4000/api/users/report');
+  }
+
 }
