@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "44beac78-4d37-4b2d-82d4-e1f4310233ad",
+		"_postman_id": "6b73b6ea-8c00-4432-9285-77f180f66d1c",
 		"name": "childhood-obesity-control",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -18,22 +18,22 @@
 							"urlencoded": [
 								{
 									"key": "firstName",
-									"value": "David",
+									"value": "John",
 									"type": "text"
 								},
 								{
 									"key": "surname1",
-									"value": "Jiménez",
+									"value": "Jones",
 									"type": "text"
 								},
 								{
 									"key": "surname2",
-									"value": "Suárez",
+									"value": "Jones",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "david.job.js@gmail.com",
+									"value": "abc@example.com",
 									"type": "text"
 								}
 							]
@@ -90,7 +90,8 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "1",
+									"type": "string"
 								}
 							]
 						}
@@ -107,22 +108,22 @@
 							"urlencoded": [
 								{
 									"key": "firstName",
-									"value": "David",
+									"value": "John",
 									"type": "text"
 								},
 								{
 									"key": "surname1",
-									"value": "Jiménez",
+									"value": "Saint",
 									"type": "text"
 								},
 								{
 									"key": "surname2",
-									"value": "Suárez",
+									"value": "John",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "davidjobjimenezsuarez@alumno.ieselrincon.es",
+									"value": "address@example.com",
 									"type": "text"
 								}
 							]
@@ -141,7 +142,8 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "2",
+									"type": "string"
 								}
 							]
 						}
@@ -167,198 +169,8 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Students",
-			"item": [
-				{
-					"name": "Create student",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "firstName",
-									"value": "David",
-									"type": "text"
-								},
-								{
-									"key": "surname1",
-									"value": "Jiménez",
-									"type": "text"
-								},
-								{
-									"key": "surname2",
-									"value": "Suárez",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "david.job.js@gmail.com",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}students/",
-							"protocol": "{{$PROTOCOL}}",
-							"host": [
-								"{{$HOST}}"
-							],
-							"port": "{{$PORT}}",
-							"path": [
-								"{{$API_DIR}}students",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Read all students",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}students/",
-							"protocol": "{{$PROTOCOL}}",
-							"host": [
-								"{{$HOST}}"
-							],
-							"port": "{{$PORT}}",
-							"path": [
-								"{{$API_DIR}}students",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Read student with id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}students/:id",
-							"protocol": "{{$PROTOCOL}}",
-							"host": [
-								"{{$HOST}}"
-							],
-							"port": "{{$PORT}}",
-							"path": [
-								"{{$API_DIR}}students",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update student with id",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "firstName",
-									"value": "David",
-									"type": "text"
-								},
-								{
-									"key": "surname1",
-									"value": "Jiménez",
-									"type": "text"
-								},
-								{
-									"key": "surname2",
-									"value": "Suárez",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "david.job.js@gmail.com",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}students/:id",
-							"protocol": "{{$PROTOCOL}}",
-							"host": [
-								"{{$HOST}}"
-							],
-							"port": "{{$PORT}}",
-							"path": [
-								"{{$API_DIR}}students",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete student with id",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "{{$PROTOCOL}}://{{$HOST}}:{{$PORT}}/{{$API_DIR}}students/:id",
-							"protocol": "{{$PROTOCOL}}",
-							"host": [
-								"{{$HOST}}"
-							],
-							"port": "{{$PORT}}",
-							"path": [
-								"{{$API_DIR}}students",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1"
+									"value": "1",
+									"type": "string"
 								}
 							]
 						}

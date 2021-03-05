@@ -35,11 +35,13 @@ readdirSync(__dirname)
       Sequelize.DataTypes
     );
     db[model.name] = model;
+    console.log(`Loaded model ${model.name}`);
   });
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
+    console.log(`Associated model ${modelName}`);
   }
 });
 

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Users</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="getHelp()" expand="block" fill="clear" shape="round">
+        <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="addUser()" expand="block" fill="clear" shape="round">
+        <ion-icon slot="icon-only" name="add-circle-outline"> </ion-icon>
+      </ion-button>
+      <ion-button (click)="usersReport()">
+        <ion-icon slot="icon-only" name="newspaper-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let user of users" button (click)="getUserDetails(user.id)">
+    <ion-card-title>
+      {{ user.surname1 }} {{ user.surname2 }}, {{ user.firstName }}
+    </ion-card-title>
+  </ion-card>
+</ion-content>

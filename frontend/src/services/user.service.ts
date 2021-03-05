@@ -8,29 +8,29 @@ import { Observable } from 'rxjs';
 export class UserService {
   private baseUrl = 'http://localhost:4000/api/users';
 
-  private options = {
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-  };
-
   private constructor(private http: HttpClient) {}
 
   public create(body: object): Observable<any> {
-    return this.http.post(this.baseUrl, body, this.options);
+    return this.http.post(this.baseUrl, body);
   }
 
   public readAll(): Observable<any> {
-    return this.http.get(this.baseUrl, this.options);
+    return this.http.get(this.baseUrl);
   }
 
   public read(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${id}`, this.options);
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
 
   public update(id: number, body: object): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}`, body, this.options);
+    return this.http.put(`${this.baseUrl}/${id}`, body);
   }
 
   public delete(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`, this.options);
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  public report(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/report`);
   }
 }
