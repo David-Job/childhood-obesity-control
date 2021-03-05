@@ -49,4 +49,8 @@ export class UserListPage implements OnInit {
     window.open('http://localhost:4000/api/users/report');
   }
 
+  getHelp() {
+    window.open('http://localhost:8080/Tutorial%20HelpNDoc.html');
+  }
+
 }

@@ -9,16 +9,20 @@ describe('UserListPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserListPage ],
+      declarations: [UserListPage],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UserListPage);
-    component = fixture.componentInstance;
+    fixture=TestBed.createComponent(UserListPage);
+    component=fixture.componentInstance;
     fixture.detectChanges();
   }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should feature David Job as the first user', () => {
+    expect(component.users[0].firstName).toEqual("David Job");
+  })
 });

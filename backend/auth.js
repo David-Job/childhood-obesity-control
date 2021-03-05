@@ -1,11 +1,11 @@
 const jwt = require("jsonwebtoken");
 const utils = require("./utils");
 const bcrypt = require("bcryptjs");
-
+const { secret } = require("./config/auth.config");
 const db = require("./models");
-const User = db.user;
+const { user } = db;
 
-exports.signin = (req, res) => {
+exports.signIn = (req, res) => {
   const email = req.body.email;
   const pwd = req.body.password;
 
@@ -18,7 +18,8 @@ exports.signin = (req, res) => {
   }
 
   // return 401 status if the credential is not match.
-  User.findOne({ where: { email: email } })
+  user
+    .findOne({ where: { email: email } })
     .then((data) => {
       console.log(data.password);
       const result = bcrypt.compareSync(pwd, data.dataValues.password);
@@ -44,7 +45,8 @@ exports.signin = (req, res) => {
 exports.isAuthenticated = (req, res, next) => {
   // check header or url parameters or post parameters for token
   // var token = req.body.token || req.query.token;
-  var token = req.token;
+  console.log(req);
+  var token = req.headers.authorization.split(" ")[1];
   console.log("Token: " + token);
   if (!token) {
     return res.status(400).json({
@@ -54,29 +56,31 @@ exports.isAuthenticated = (req, res, next) => {
   }
   // check token that was passed by decoding token using secret
   // .env should contain a line like JWT_SECRET=V3RY#1MP0RT@NT$3CR3T#
-  jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
-    if (err)
-      return res.status(401).json({
-        error: true,
-        message: "Invalid token.",
-      });
-
-    User.findByPk(user.id)
-      .then(() => {
-        // return 401 status if the userId does not match.
-        if (!user.id) {
-          return res.status(401).json({
-            error: true,
-            message: "Invalid user.",
-          });
-        }
-        // get basic user details
-        next();
-      })
-      .catch((_err) => {
-        res.status(500).send({
-          message: "Error retrieving User with id=" + id,
+  jwt.verify(token, secret, (err, data) => {
+      if (err)
+        return res.status(401).json({
+          error: true,
+          message: "Invalid token.",
         });
-      });
-  });
+
+    console.log(data.user);
+      user
+        .findByPk(data.user.id)
+        .then(() => {
+          // return 401 status if the userId does not match.
+          if (!data.user.id) {
+            return res.status(401).json({
+              error: true,
+              message: "Invalid user.",
+            });
+          }
+          // get basic user details
+          next();
+        })
+        .catch((_err) => {
+          res.status(500).send({
+            message: "Error retrieving User with id=" + id,
+          });
+        });
+    });
 };
