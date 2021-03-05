@@ -16,11 +16,11 @@ A list of technologies used within the project:
  * [Angular](https://angular.io/): Version 10
 ## Data Model
 ### Diagrams
-* Use cases
+#### Use cases
 ![Use cases diagram](diagrams/control-obesidad-casos-de-uso.png)
-* Entity-Relationship
+#### Entity-Relationship
 ![Entity-Relationship diagram](diagrams/control-obesidad-entidad-relacion.png)
-* Classes
+#### Classes
 ![Classes diagram](diagrams/control-obesidad-clases.png)
 ### Relational Model
 * User ( __userId__, firstName, surname1, surname2, email, password )
